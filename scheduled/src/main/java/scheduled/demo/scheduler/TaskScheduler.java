@@ -14,6 +14,6 @@ public class TaskScheduler {
 
     @Scheduled(fixedDelay = 1, timeUnit = TimeUnit.MINUTES)
     public void scheduleTask() {
-        System.out.println("MagaluTaskScheduler");
+        System.out.println("TaskScheduler");
     }
 }

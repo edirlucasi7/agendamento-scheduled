@@ -13,6 +13,8 @@ public class Notification {
 
     private final LocalDateTime createdAt = LocalDateTime.now();
 
+    private LocalDateTime updatedAt;
+
     private LocalDateTime executedAt;
 
     private String destination;
@@ -46,6 +48,10 @@ public class Notification {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
     public LocalDateTime getExecutedAt() {
