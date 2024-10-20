@@ -6,6 +6,8 @@ import scheduled.demo.entity.notification.Notification;
 import scheduled.demo.repository.NotificationRepository;
 import scheduled.demo.request.NotificationRequest;
 
+import java.util.Optional;
+
 @Service
 public class NotificationService {
 
@@ -19,5 +21,9 @@ public class NotificationService {
     public void createNotification(NotificationRequest request) {
         Notification notification = request.toModel();
         notificationRepository.save(notification);
+    }
+
+    public Optional<Notification> findById(Long id) {
+        return notificationRepository.findById(id);
     }
 }

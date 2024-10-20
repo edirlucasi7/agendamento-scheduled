@@ -1,12 +1,13 @@
 package scheduled.demo.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import scheduled.demo.entity.notification.Notification;
 import scheduled.demo.request.NotificationRequest;
 import scheduled.demo.service.NotificationService;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/notifications")
@@ -19,8 +20,15 @@ public class NotificationController {
     }
 
     @PostMapping
-    public ResponseEntity<?> scheduled(@RequestBody NotificationRequest request) {
+    public ResponseEntity<?> scheduled(@Valid @RequestBody NotificationRequest request) {
         notificationService.createNotification(request);
         return ResponseEntity.accepted().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> find(@PathVariable Long id) {
+        Optional<Notification> possibleNotification = notificationService.findById(id);
+        if (possibleNotification.isEmpty()) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(possibleNotification.get());
     }
 }

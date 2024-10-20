@@ -13,6 +13,8 @@ public class Notification {
 
     private final LocalDateTime createdAt = LocalDateTime.now();
 
+    private LocalDateTime executedAt;
+
     private String destination;
 
     private String message;
@@ -26,14 +28,43 @@ public class Notification {
     @Deprecated
     public Notification() { }
 
-    private Notification(String destination, String message, Channel channel, Status status) {
+    public Notification(String destination, String message, Channel channel, Status status, LocalDateTime executedAt) {
         this.destination = destination;
         this.message = message;
         this.channel = channel;
         this.status = status;
+        this.executedAt = executedAt;
     }
 
-    public static Notification createNotification(String destination, String message, Channel channel) {
-        return new Notification(destination, message, channel, Status.PENDING);
+    public static Notification createNotification(String destination, String message, Channel channel, LocalDateTime executedAt) {
+        return new Notification(destination, message, channel, Status.PENDING, executedAt);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getExecutedAt() {
+        return executedAt;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 }
