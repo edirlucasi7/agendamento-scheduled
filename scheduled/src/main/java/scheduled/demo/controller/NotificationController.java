@@ -2,6 +2,7 @@ package scheduled.demo.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import scheduled.demo.entity.notification.Notification;
 import scheduled.demo.request.NotificationRequest;
@@ -14,9 +15,16 @@ import java.util.Optional;
 public class NotificationController {
 
     public final NotificationService notificationService;
+    public final NotificationChannelValidator notificationChannelValidator;
 
-    public NotificationController(NotificationService notificationService) {
+    public NotificationController(NotificationService notificationService, NotificationChannelValidator notificationChannelValidator) {
         this.notificationService = notificationService;
+        this.notificationChannelValidator = notificationChannelValidator;
+    }
+
+    @InitBinder(value = "notificationRequest")
+    public void init(WebDataBinder binder) {
+        binder.addValidators(notificationChannelValidator);
     }
 
     @PostMapping
