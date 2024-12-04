@@ -12,7 +12,7 @@
 	<artifactId>scheduled</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>scheduled</name>
-	<description>Projeto usando Soring Scheduled</description>
+	<description>Projeto usando Spring Scheduled</description>
 	<url/>
 	<licenses>
 		<license/>
